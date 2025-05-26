@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import stripe
 import sqlite3 # Using sqlite3 as an example for database access
 from config import STRIPE_SECRET_KEY, FLASK_SECRET_KEY, SUCCESS_URL, CANCEL_URL
 import os
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "https://realmstoriches.github.io"}})
 app.secret_key = FLASK_SECRET_KEY # Needed for Flask's internal security features
 
 stripe.api_key = STRIPE_SECRET_KEY
@@ -192,4 +194,4 @@ if __name__ == '__main__':
     # Initialize database tables if they don't exist and safely insert products
     init_db()
     # Run the Flask application
-    app.run(debug=True) # debug=True is for development, set to False in production
+    app.run(debug=False) # debug=True is for development, set to False in production
