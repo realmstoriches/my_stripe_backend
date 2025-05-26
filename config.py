@@ -8,5 +8,5 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_live_51RSfPXFHtr1SOdkcs5F
 FLASK_SECRET_KEY = os.getenv('FLASK_SECRET_KEY', '527582bee44bb95f60bfb5e2da3adc09ea27ade6fce04dfe')
 
 # URLs for redirects after checkout
-SUCCESS_URL = 'http://realmstoriches.github.io/success' # <-- Adjust if your domain is different
-CANCEL_URL = 'http://realmstoriches.github.io/cancel'   # <-- Adjust if your domain is different
+SUCCESS_URL = 'https://realmstoriches.github.io/success.html' # <-- Adjust if your domain is different
+CANCEL_URL = 'https://realmstoriches.github.io/cancel.html'   # <-- Adjust if your domain is different
