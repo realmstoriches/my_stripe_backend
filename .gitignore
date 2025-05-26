@@ -2,3 +2,5 @@ venv/
 *.db
 config.py
 __pycache__/
+.env
+node_modules/
