@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 // Configure CORS to allow requests from your GitHub Pages frontend and your backend itself
 const corsOptions = {
     origin: [
-        'https://realmstoriches.github.io',         // Your GitHub Pages frontend URL
+        'https://realmstoriches.xyz',         // Your GitHub Pages frontend URL
         'https://my-stripe-backend-api.onrender.com', // Your Render.com backend URL
         'http://localhost:8080',                    // Common for local development (e.g., if using live-server)
         'http://127.0.0.1:5500'                     // Another common local development address (e.g., VS Code Live Server)
