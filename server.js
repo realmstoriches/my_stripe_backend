@@ -6,7 +6,7 @@ const Stripe = require('stripe');
 const cors = require('cors'); // CORS middleware
 
 const app = express();
-const port = process.env.PORT || 3001; // Use Render's PORT env var in production, or 3001 locally
+const port = process.env.PORT || 8080; // Use Render's PORT env var in production, or 3001 locally
 
 // Initialize Stripe with your **SECRET KEY**.
 // This key will be pulled from Render's environment variables in production.
@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 const corsOptions = {
     origin: [
         'https://realmstoriches.xyz',         // Your GitHub Pages frontend URL
-        'https://my-stripe-backend-api.onrender.com', // Your Render.com backend URL
+        'https://mystripebackend-production.up.railway.app', // Your Render.com backend URL
         'http://localhost:8080',                    // Common for local development (e.g., if using live-server)
-        'http://127.0.0.1:5500'                     // Another common local development address (e.g., VS Code Live Server)
+        'http://127.0.0.1:8080'                     // Another common local development address (e.g., VS Code Live Server)
     ],
     methods: ['GET', 'POST'], // Allow GET and POST requests
     credentials: true,       // Allow sending cookies (not strictly needed for Stripe API calls, but good practice)
