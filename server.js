@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const express = require('express');
 const Stripe = require('stripe');
-const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -15,19 +14,9 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 // --- Middleware Configuration ---
 // IMPORTANT: Middleware must be configured at the top, before any routes.
 
-const corsOptions = {
-    origin: [
-        'https://realmstoriches.xyz',
-        'https://my-stripe-backend-inky.vercel.app',
-        'http://localhost:8080',
-        'http://127.0.0.1:8080'
-    ],
-    methods: ['GET', 'POST'],
-    credentials: true,
-};
 
-// Apply middleware
-app.use(cors(corsOptions)); // Handles CORS pre-flight requests
+
+
 app.use(express.json()); // Parses incoming JSON request bodies
 app.use(express.urlencoded({ extended: true }));
 
