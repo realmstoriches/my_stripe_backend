@@ -59,6 +59,73 @@ app.post('/create-payment-intent', async (req, res) => {
         return Math.round(total * 100);
     };
 
+// =========================================================================
+//  NEW ENDPOINT FOR STRIPE HOSTED CHECKOUT
+//  This is the code you need to add.
+// =========================================================================
+app.post('/create-checkout-session', async (req, res) => {
+    try {
+        // 1. Get the cart items array from the request body.
+        const { items } = req.body;
+
+        if (!items || items.length === 0) {
+            return res.status(400).json({ error: 'Cannot create a session with no items.' });
+        }
+
+        // 2. Define the base URL of your live website for the redirect URLs.
+        const yourWebsiteURL = 'https://realmstoriches.xyz';
+
+        // 3. Create the Stripe Checkout Session.
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+
+            // 4. Map the items from your cart into Stripe's required line_items format.
+            line_items: items.map(item => {
+                const unitAmount = Math.round(parseFloat(item.price) * 100);
+                if (isNaN(unitAmount) || unitAmount <= 0) {
+                    throw new Error(`Invalid price for item: ${item.name}`);
+                }
+                return {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: item.name,
+                        },
+                        // Price must be in the smallest currency unit (e.g., cents).
+                        unit_amount: unitAmount,
+                    },
+                    quantity: parseInt(item.quantity, 10),
+                };
+            }),
+
+            // 5. Set the redirect URLs. Stripe will add the session_id automatically.
+            success_url: `${yourWebsiteURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${yourWebsiteURL}/cancel.html`,
+
+            // 6. THIS IS THE KEY for using your custom domain.
+            // It tells Stripe to use the CNAME record you configured.
+            custom_domain: {
+                domain: 'checkout.realmstoriches.xyz',
+                enabled: true,
+            },
+        });
+
+        // 7. Send the session URL back to the frontend.
+        res.json({ url: session.url });
+
+    } catch (error) {
+        console.error('Error creating Stripe Checkout session:', error.message);
+        res.status(500).json({ error: `Internal Server Error: ${error.message}` });
+    }
+});
+
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Backend server listening on port ${port}`);
+}); 
+
     const amount = calculateOrderAmount(items);
     const currency = 'usd'; // Set your currency here
 
