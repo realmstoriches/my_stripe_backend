@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 const corsOptions = {
     origin: [
         'https://realmstoriches.xyz',         // Your GitHub Pages frontend URL
-        'https://mystripebackend-production.up.railway.app', // Your Render.com backend URL
+        'https://my-stripe-backend-inky.vercel.app', // Your Render.com backend URL
         'http://localhost:8080',                    // Common for local development (e.g., if using live-server)
         'http://127.0.0.1:8080'                     // Another common local development address (e.g., VS Code Live Server)
     ],
