@@ -1,51 +1,25 @@
 {
-  :
-
-```json
-{
   "version": 2,
   "builds": [
-    {"version": 2,
-  "builds": [
     {
-      "src": "server.
       "src": "server.js",
       "use": "@vercel/node"
     }
-js",
-      "use": "@vercel/node"
-    }
   ],
-  "routes": [  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest":
-    {
-      "src": "/(.*)",
       "dest": "server.js"
-    } "server.js"
     }
-  ],
-  "headers": [
-    {
-      "source
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Credentials", "value": "true" },": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Credentials
-        { "key": "Access-Control-Allow-Origin", "value": "https://realmstor", "value": "true" },
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "https://realmstoriches.xyz" },
-        { "key": "Access-Control-iches.xyz" },
-        { "key": "Access-Control-Allow-Methods", "value": "Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-        { "key":GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-        { "key": "Access-Control-Allow-Headers "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version,With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
-      ]
--Api-Version" }
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
       ]
     }
   ]
